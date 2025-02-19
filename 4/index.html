@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4</title>
+</head>
+<body>
+    <p>Digital Clock</p>
+    <p id="clk"></p>
+</body>
+<script>
+    function clock(){
+        let now = new Date();
+        let date = now.toLocaleDateString();
+        let time = now.toLocaleTimeString();
+        document.getElementById("clk").innerHTML = `${date}  ${time}`;
+    }
+
+    setInterval(clock,1000);
+    clock();
+</script>
+</html>

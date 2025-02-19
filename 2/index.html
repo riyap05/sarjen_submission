@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2</title>
+</head>
+<body>
+    <p id="counter">0</p>
+    <button onclick="Start()">Start</button>
+    <button onclick="Stop()">Stop</button>
+    <button onclick="Pause()">Pause</button>
+</body>
+<script>
+    let count = document.getElementById("counter").innerText;
+    let interval = null;
+
+        function Start() {
+            if (interval === null) { 
+                interval = setInterval(() => {
+                    if (count < 10) {
+                        count++;
+                        document.getElementById("counter").innerText = count;
+                    } else {
+                        stopCounter(); 
+                    }
+                }, 1000);
+            }
+        }
+
+        function Pause() {
+            clearInterval(interval);
+            interval = null;
+        }
+
+        function Stop() {
+            clearInterval(interval);
+            interval = null;
+            count = 0;
+            document.getElementById("counter").innerText = count;
+        }
+</script>
+</html>
