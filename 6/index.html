@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Maker</title>
+</head>
+<body>
+
+    <h2>Color Maker</h2>
+    <div class="container">
+        <div>
+            <div class="slider">
+                <label for="red">R</label>
+                <input type="range" id="red" min="0" max="255" value="0">
+            </div>
+            <div class="slider">
+                <label for="green">G</label>
+                <input type="range" id="green" min="0" max="255" value="0">
+            </div>
+            <div class="slider">
+                <label for="blue">B</label>
+                <input type="range" id="blue" min="0" max="255" value="0">
+            </div>
+            <p id="rgb-value">rgb(0, 0, 0)</p>
+        </div>
+
+        <p height="50%" width="" class="color-box" id="color-box" style="background-color: rgb(0, 0, 0);">
+            rgb(0, 0, 0)
+        </p>
+    </div>
+
+    <script>
+        const redSlider = document.getElementById("red");
+        const greenSlider = document.getElementById("green");
+        const blueSlider = document.getElementById("blue");
+        const colorBox = document.getElementById("color-box");
+        const rgbText = document.getElementById("rgb-value");
+
+        function updateColor() {
+            let r = redSlider.value;
+            let g = greenSlider.value;
+            let b = blueSlider.value;
+            let rgbString = `rgb(${r}, ${g}, ${b})`;
+
+            colorBox.style.backgroundColor = rgbString;
+            colorBox.textContent = rgbString;
+            rgbText.textContent = rgbString;
+        }
+
+        redSlider.addEventListener("input", updateColor);
+        greenSlider.addEventListener("input", updateColor);
+        blueSlider.addEventListener("input", updateColor);
+    </script>
+
+</body>
+</html>
