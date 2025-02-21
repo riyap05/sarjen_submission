@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <div class="form-group">
+        <label for="name">Enter Name:</label>
+        <input type="text" id="name" />
+      </div>
+      <br />
+
+      <div class="form-group">
+        <label for="mobile">Mobile No.:</label>
+        <input type="text" id="mobile" />
+      </div>
+      <br />
+      <div class="form-group" style="display: flex">
+        <label>Gender:</label>
+        <div class="inline-group">
+          <label
+            ><input type="radio" name="gender" value="Male" id="male" />
+            Male</label
+          >
+          <label
+            ><input type="radio" name="gender" value="Female" id="female" />
+            Female</label
+          >
+        </div>
+      </div>
+      <br />
+
+      <div class="form-group" style="display: flex">
+        <label>Hobby:</label>
+        <div class="inline-group">
+          <label
+            ><input type="checkbox" id="reading" value="Reading" />
+            Reading</label
+          >
+          <label
+            ><input type="checkbox" id="dancing" value="Dancing" />
+            Dancing</label
+          >
+          <label
+            ><input type="checkbox" id="singing" value="Singing" />
+            Singing</label
+          >
+        </div>
+      </div>
+      <br />
+      <div class="form-group">
+        <label for="city">City:</label>
+        <select id="city">
+          <option value="">Select City</option>
+          <option value="Ahmedabad">Ahmedabad</option>
+          <option value="Vadodara">Vadodara</option>
+          <option value="Gandhinagar">Gandhinagar</option>
+          <option value="Surat">Surat</option>
+          <option value="Rajkot">Rajkot</option>
+        </select>
+      </div>
+      <br />
+      <button onclick="submitForm()">Submit Data</button>
+    </div>
+    <br />
+    <div class="output" id="output" style="display: none"></div>
+
+    <script>
+      function submitForm() {
+        let name = document.getElementById("name").value.trim();
+        let mobile = document.getElementById("mobile").value.trim();
+        let gender = document.querySelector('input[name="gender"]:checked');
+        let city = document.getElementById("city").value;
+        let hobbies = [];
+
+        document
+          .querySelectorAll('input[type="checkbox"]:checked')
+          .forEach((checkbox) => {
+            hobbies.push(checkbox.value);
+          });
+
+        // Validation
+        if (name === "") {
+          alert("Please enter your name.");
+          return;
+        }
+        if (mobile === "" || isNaN(mobile) || mobile.length !== 10) {
+          alert("Please enter a valid 10-digit mobile number.");
+          return;
+        }
+        if (!gender) {
+          alert("Please select your gender.");
+          return;
+        }
+        if (hobbies.length === 0) {
+          alert("Please select at least one hobby.");
+          return;
+        }
+        if (city === "") {
+          alert("Please select a city.");
+          return;
+        }
+
+        // Display Output
+        let outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = `
+                <h3>Submitted Data:</h3>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Mobile No.:</strong> ${mobile}</p>
+                <p><strong>Gender:</strong> ${gender.value}</p>
+                <p><strong>Hobbies:</strong> ${hobbies.join(", ")}</p>
+                <p><strong>City:</strong> ${city}</p>
+            `;
+        outputDiv.style.display = "block";
+      }
+    </script>
+  </body>
+</html>

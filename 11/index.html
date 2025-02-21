@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GST Calculator</title>
+  </head>
+  <body>
+    <div class="calculator">
+      <h2>GST Calculator</h2>
+      <p>Enter Amount (in INR)</p>
+      <input type="number" id="amount" />
+      <select id="gstRate">
+        <option value="5">5%</option>
+        <option value="12">12%</option>
+        <option value="18" selected>18%</option>
+        <option value="28">28%</option>
+      </select>
+      <br />
+      <br />
+      <button onclick="calculateGST()">Calculate GST</button>
+
+      <div class="result">
+        <p>Amount: Rs.<span id="displayAmount">0.00</span></p>
+        <p>
+          GST (<span id="displayGstRate">18</span>%):
+          <span id="displayGst">0.00</span>
+        </p>
+        <p>Total: Rs.<span id="displayTotal">0.00</span></p>
+      </div>
+    </div>
+
+    <script>
+      function calculateGST() {
+        let amount = parseFloat(document.getElementById("amount").value);
+        let gstRate = parseFloat(document.getElementById("gstRate").value);
+
+        if (isNaN(amount) || amount <= 0) {
+          alert("Please enter a valid amount!");
+          return;
+        }
+
+        let gstAmount = (amount * gstRate) / 100;
+        let totalAmount = amount + gstAmount;
+
+        document.getElementById("displayAmount").innerText = amount.toFixed(2);
+        document.getElementById("displayGstRate").innerText = gstRate;
+        document.getElementById("displayGst").innerText = gstAmount.toFixed(2);
+        document.getElementById("displayTotal").innerText =
+          totalAmount.toFixed(2);
+      }
+    </script>
+  </body>
+</html>
